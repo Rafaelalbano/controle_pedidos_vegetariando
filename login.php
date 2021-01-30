@@ -5,18 +5,13 @@
     $email = $_POST["email"];
     $senha = $_POST["senha"];
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-
     try {
-    $conn = new PDO("mysql:host=$servername;dbname=vegetariando_db", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "Conexão realizada com sucesso!";
-    $stmt = $conn->prepare("SELECT codigo FROM usuario WHERE email=:email AND senha=md5(:senha)");
-    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-    $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
-    $stmt->execute();
+        include("conexao_db.php");
+        //echo "Conexão realizada com sucesso!";
+        $stmt = $conn->prepare("SELECT codigo FROM usuario WHERE email=:email AND senha=md5(:senha)");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
+        $stmt->execute();
     
     // set the resulting array to associative
         $result = $stmt->fetchAll();
@@ -25,7 +20,7 @@
             $resultado["msg"] = "Usuário encontrado!";
             $resultado["cod"] = 1;
         }else if($qtd_usuarios == 0){
-            $resultado["msg"] =  "E-mail e senha não conferem.";
+            $resultado["msg"] =  "E-mail e senha não conferem!";
             $resultado["cod"] = 0;
         }
     }

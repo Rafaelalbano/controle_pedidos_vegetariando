@@ -26,7 +26,12 @@
             <label for="preco_produto">Preço unitário:</label>
             <input type="text" class="form-control" id="preco_produto" aria-describedby="nomeHelp" name="preco_produto">
          </div>
-         <button type="submit" class="btn btn-success">Adicionar item</button>   
+         <button type="submit" class="btn btn-success">Adicionar item</button>
+         <?php if(isset($resultado)): ?>
+               <div class="alert <?=$resultado['style']?>">
+                  <?php echo $resultado["msg"]; ?>
+               </div> 
+            <?php endif; ?>   
          </form>
     </div>
 </body>

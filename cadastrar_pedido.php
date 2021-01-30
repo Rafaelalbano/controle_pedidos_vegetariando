@@ -6,13 +6,8 @@
         $obs = $_POST["obs_produto"];
         $preco = $_POST["preco_produto"];
     
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-    
         try {
-        $conn = new PDO("mysql:host=$servername;dbname=vegetariando_db", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        include("conexao_db.php");
         //echo "Conexão realizada com sucesso!";
         $sql = "INSERT INTO item_pedido (cod_usuario, nome_produto, observacao, preco_und, quantidade) VALUES (?,?,?,?,?)";
         $stmt= $conn->prepare($sql);
@@ -20,15 +15,18 @@
         
              $resultado["msg"] = "Item inserido!";
              $resultado["cod"] = 1;
+             $resultado["style"] = "alert-success";
             
             }
        
         catch(PDOException $e) {
-            echo "Insersão falhou: " . $e->getMessage();
-            $resultado["msg"] = "Item não inserido!";
+            $resultado["msg"] = "Insersão falhou: " . $e->getMessage();
             $resultado["cod"] = 0;
+            $resultado["style"] = "alert-danger";
         
         }
     }
             $conn = null;
+
+    include("pedido.php");
     
