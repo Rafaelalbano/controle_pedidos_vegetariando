@@ -12,11 +12,11 @@
          <h2>Escolha de itens do pedido</h2><br/>
          <div class="form-group">
             <label for="nome_produto">Nome do produto:</label>
-            <input type="text" class="form-control" id="nome_produto" aria-describedby="nomeHelp" placeholder="Digite o produto" name="nome_produto">
+            <input type="text" class="form-control" id="nome_produto" required aria-describedby="nomeHelp" placeholder="Digite o produto" name="nome_produto">
          </div>
          <div class="form-group">
             <label for="qtd_produto">Quantidade:</label>
-            <input type="number" class="form-control" id="qtd_produto" aria-describedby="nomeHelp" maxlenght="10" name="qtd_produto">
+            <input type="number" class="form-control" id="qtd_produto" required aria-describedby="nomeHelp" maxlenght="10" name="qtd_produto">
          </div>
          <div class="form-group">
             <label for="obs_produto">Observações:</label>
@@ -24,7 +24,7 @@
          </div>
          <div class="form-group">
             <label for="preco_produto">Preço unitário:</label>
-            <input type="text" class="form-control" id="preco_produto" aria-describedby="nomeHelp" name="preco_produto">
+            <input type="text" class="form-control" id="preco_produto" step=".01" aria-describedby="nomeHelp" name="preco_produto">
          </div>
          <button type="submit" class="btn btn-success">Adicionar item</button>
          <?php if(isset($resultado)): ?>
