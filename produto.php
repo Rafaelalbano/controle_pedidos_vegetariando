@@ -47,15 +47,17 @@
                <th>Info adicionatal</th>
                <th>Data Hora</th>
             </tr>
+            <?php foreach($produtos as $p): ?>
             <tr>
-               <td></td>   
-               <td></td> 
-               <td></td> 
-               <td></td>   
-               <td></td> 
-               <td></td> 
-               <td></td> 
+               <td><?= $p["codigo"]; ?></td>   
+               <td><?= $p["foto"]; ?></td> 
+               <td><?= $p["nome"]; ?></td> 
+               <td><?= $p["categoria"]; ?></td>   
+               <td><?= $p["valor"]; ?></td> 
+               <td><?= $p["info_adicional"]; ?></td> 
+               <td><?= $p["data_hora"]; ?></td> 
             </tr>   
+            <?php endforeach ?>
          </table>   
            
 

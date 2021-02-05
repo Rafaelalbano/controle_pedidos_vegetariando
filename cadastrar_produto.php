@@ -13,22 +13,38 @@
             $sql = "INSERT INTO produto (nome, categoria, valor, foto, info_adicional, codigo_usuario) VALUES (?,?,?,?,?,?)";
             $stmt= $conn->prepare($sql);
             $stmt->execute([$nome, $categoria, $valor, $foto, $info, null]);
+
+ 
+    
             
-                 $resultado["msg"] = "Item inserido com sucesso!";
-                 $resultado["cod"] = 1;
-                 $resultado["style"] = "alert-success";
+            $resultado["msg"] = "Item inserido com sucesso!";
+            $resultado["cod"] = 1;
+            $resultado["style"] = "alert-success";
                 
-                }
+            }
            
-            catch(PDOException $e) {
-                $resultado["msg"] = "Insersão falhou: " . $e->getMessage();
-                $resultado["cod"] = 0;
-                $resultado["style"] = "alert-danger";
+        catch(PDOException $e) {
+            $resultado["msg"] = "Erro de banco de dados: " . $e->getMessage();
+            $resultado["cod"] = 0;
+            $resultado["style"] = "alert-danger";
             
             }
-        }
-                $conn = null;
+        
+        try{
+            $consulta = $conn->prepare("SELECT * FROM produto");
+            $consulta->execute();
+            $produtos = $consulta->fetchAll();
 
-                include("produto.php")
+        }catch(PDOException $e){
+            $resultado["msg"] = "Erro ao selecionar produtos no banco de dados: " . $e->getMessage();
+            $resultado["cod"] = 0;
+            $resultado["style"] = "alert-danger";
+            
+        }
+        
+        }
+        $conn = null;
+ 
+        include("produto.php")
       
 ?>
